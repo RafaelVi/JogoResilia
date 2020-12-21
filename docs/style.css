@@ -1,0 +1,12 @@
+body{
+    background-image: url("./Cyberdevbackground.jpg");
+}
+
+#botaoStart{
+        margin: 30% 45% 10% 45%;
+        padding: 10px;
+        border-radius: 5px;
+        background: black;
+        color: yellow;
+
+}
