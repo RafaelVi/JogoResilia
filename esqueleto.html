@@ -3,124 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberDev</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-
+    <title>Document</title>
 </head>
 <body>
-    <header> 
-        <button onclick="enableAutoplay()" type="button">Habilitar musica de fundo</button>
-        <button onclick="desableAutoplay()" type="button">Desabilitar musica de fundo</button>
-        <button onclick="enableControl()" type="button">Mostrar Player de Aúdio</button>
-        <audio id="myVideo" src="backgroundmusic.mp3"  loop="true" controls hidden="true" ></audio>
-        <audio id="urss" src="hino_da_uniao_sovietica.mp3"  loop="true" controls hidden="true" >
-        <audio id="eua" src="hino_nacional_dos_estados_unidos.mp3"  loop="true" controls hidden="true" >
-    </header> 
-    <main id="main">  
-        <button onclick="inicioDeJogo(), hidden = true " type="button" id="botaoStart">Começar Jogo</button>
-    </main>   
-
+    
+    <script>
          
-      <script>
-//----------------------------- Audio Section-----------------------------------------------------------          
-          var vid = document.getElementById("myVideo");
-          var urss = document.getElementById("urss");
-          var eua = document.getElementById("eua");
-        function enableAutoplay() { 
-            vid.autoplay = true;
-            vid.load();
-            
-        }
-        function desableAutoplay(){
-            vid.autoplay = false;
-            vid.load();
-        }
-        function enableControl(){
-            vid.hidden = false;
-            vid.load();
-        }
-        function hinoURSS(){
-            desableAutoplay();
-            urss.autoplay = true;
-            urss.load();
-        }
-        function hinoEua(){
-            desableAutoplay();
-            eua.autoplay = true;
-            eua.load();
-        }
-        function desableAutoplayEua(){
-            eua.autoplay = false;
-            eua.load();
-        }
-        function desableAutoplayUrss(){
-            urss.autoplay = false;
-            urss.load();
-        }
-
-//---------------------------------------------------------------------------------------------------------
-//-------------------------------------Game Section--------------------------------------------------------
-        var decisao;
-        var conquistas = ["Bem vindo a Sampa City!"];
-        var conquista;
-        function fimdejogo(){
-            var opcao1 = "Sim";
-            var opcao2 = "Não";
-            numero = 23
-            blocoOpcoes("Deseja Continuar Jogando?",opcao1,opcao2);
-            var button = document.getElementById("bt2"+numero);
-            var button2 = document.getElementById("botaoStart");
-            var radios = document.getElementsByName("escolha");
-            button.onclick = function() {
-                for( i = 0;i< radios.length;i++){
-                    if(radios[i].checked){
-                        escolha = radios[i].value;
-                    }
-                }
-                if(escolha == opcao1){
-                    desableAutoplayEua();
-                    desableAutoplayUrss();
-                    enableAutoplay();
-                    um();
-                }
-                if(escolha == opcao2){
-                    button2.hidden = false;
-                    
-                }
-                
-                deletarBloco();
-            }
-        }
-        function creditos(){
-            numero = 777
-            blocoMensagem("Parabéns! Você completou um final de CyberDev, continue explorando diferentes finais para desbloquear novas conquistas, até agora suas conquistas são: \n" + mostrarConquistas());
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {fimdejogo(), deletarBloco()}
-        }
-        function verificarConquista(conquista){
-        var verifica =true;
-        for(i = 0 ; i < conquistas.length ; i++){
-            if(conquistas[i] == conquista){
-                verifica = false;
-                break;
-            }
-        }
-            if(verifica == true){
-                conquistas.push(conquista);
-            }
-        
-    }
-        function mostrarConquistas(){
-            var concantena = "";
-            for(i = 0 ; i < conquistas.length ; i++){
-                concantena+= conquistas[i] + "\n";
-        }    
-            return concantena;
-        }
-
         var escolha;
-        var numero = 0;
         
         function blocoMensagem(mensagem){
             var div = document.createElement("div");
@@ -129,22 +18,20 @@
           
             div.setAttribute("id","MsgBox");
 
-            b.setAttribute("id","bt" + numero);
+            b.setAttribute("id","bt");
             b.textContent = "Continuar";
             
             msg.setAttribute("id","msg");
             msg.textContent = mensagem;
             mostrar(div,msg);
             mostrar(div,b);
-            var main = document.getElementById("main");
-            main.append(div);
+            document.body.append(div);
             
         
         }
         function blocoOpcoes(mensagem,opcao1,opcao2){
             var div = document.createElement("div");
             var msg = document.createElement("p");
-            var div2 = document.createElement("div2");
             var radio1 = document.createElement("input");
             var label1 = document.createElement("label");
             var label2 = document.createElement("label");
@@ -156,8 +43,6 @@
             label1.setAttribute("id","label1");
             label1.textContent = opcao1;
            
-
-
             msg.setAttribute("id","msg");
             msg.textContent = mensagem;
             mostrar(div,msg);
@@ -172,35 +57,21 @@
             label2.setAttribute("id","label2");
             label2.textContent = opcao2;
 
-            
-
             var b = document.createElement("button");
-            b.setAttribute("id","bt2"+numero);
+            b.setAttribute("id","bt2");
             b.textContent = "Continuar";
             var br = document.createElement("br");
            
             
            
            div.setAttribute("id","MsgBox");
-           div2.setAttribute("id","MsgBoxChild");
-
-           radio1.classList.add("flexItem");
-            radio2.classList.add("flexItem");
-            label1.classList.add("flexItem");
-            label2.classList.add("flexItem");
-            msg.classList.add("flexItem");
-            b.classList.add("flexItem");
-            div2.classList.add("flexItem");
-
-           mostrar(div2,label1);
-           mostrar(div2,radio1);
-           mostrar(div2,label2)
-           mostrar(div2,radio2);
-           mostrar(div,div2);
+           mostrar(div,label1);
+           mostrar(div,radio1);
+           mostrar(div,label2)
+           mostrar(div,radio2);
            mostrar(br);
            mostrar(div,b);
-           var main = document.getElementById("main");
-           main.append(div);
+           document.body.append(div);
             
             
         }
@@ -211,13 +82,14 @@
         function deletarBloco() {
             document.getElementById("MsgBox").remove();
         }
+
+        
         function um(){
-            document.body.style.backgroundImage = "url('Cyberdevbackground.jpg')";
-            numero = 02
             var opcao1 = "Alistar";
             var opcao2 = "Programar";
             blocoOpcoes("Você deseja se alistar para o exército brasileiro ou se tornar programador?",opcao1,opcao2);
-            var button = document.getElementById("bt2"+numero);
+
+            var button = document.getElementById("bt2");
             var radios = document.getElementsByName("escolha");
             button.onclick = function() {
                 for( i = 0;i< radios.length;i++){
@@ -236,25 +108,20 @@
             }
         }
         function umum(){
-            numero = 1;
             blocoMensagem("Você se alista e luta bravamente junto ao exército da cobra fumante, mas infelizmente é atingido por uma bomba nuclear. F");
-            conquista = "A cobra fumou;";
-            verificarConquista(conquista);
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(), deletarBloco();};
+            var button = document.getElementById("bt");
+            button.onclick = function() {um(), deletarBloco();};
         }
         function umdois(){
-            numero = 2;
             blocoMensagem("Você se torna programador e começa a pegar uns freelas.");
-            var button = document.getElementById("bt"+numero);
+            var button = document.getElementById("bt");
             button.onclick = function() {umdois0(), deletarBloco()};
         }
         function umdois0(){
-            numero = 1
             var opcao1 = "Sim";
             var opcao2 = "Não";
             blocoOpcoes("Depois de adquirir  experiência o governo brasileiro te contrata para fazer parte do setor de inteligência brasileira, você aceita?",opcao1,opcao2);
-            var button = document.getElementById("bt2"+numero);
+            var button = document.getElementById("bt2");
             var radios = document.getElementsByName("escolha");
             button.onclick = function() {
                 for( i = 0;i< radios.length;i++){
@@ -272,23 +139,20 @@
             }
         }
         function umdoisum(){
-            numero = 3
             blocoMensagem("Você entra pra inteligência brasileira e tem acesso a dados interceptados dos dois lados da guerra, mas o governo te proíbe de intervir.");
-            var button = document.getElementById("bt"+numero);
+            var button = document.getElementById("bt");
             button.onclick = function() {umdoisum0(), deletarBloco()};
         }
         function umdoisdois(){
-            numero = 4
             blocoMensagem("Você continua por conta própria, Após meses tentando consegue interceptar mensagens secretas, porém agora tem agentes americanos e russos na sua cola.");
-            var button = document.getElementById("bt"+numero);
+            var button = document.getElementById("bt");
             button.onclick = function() {umdoisdois0(), deletarBloco()};
         }
         function umdoisum0(){
-            numero = 5
             var opcao1 = "Desobedecer";
             var opcao2 = "Obedecer";
             blocoOpcoes("Você deseja desobedecer o governo e intervir ou obedecer o governo?",opcao1,opcao2);
-            var button = document.getElementById("bt2"+numero);
+            var button = document.getElementById("bt2");
             var radios = document.getElementsByName("escolha");
             button.onclick = function() {
                 for( i = 0;i< radios.length;i++){
@@ -305,12 +169,11 @@
                 deletarBloco();
             }
         }
-        function umdoisdois0(){
-            numero = 6  
+        function umdoisdois0(){  
             var opcao1 = "Convencer";
             var opcao2 = "Despistar";
             blocoOpcoes("Você pode despistar os agentes ou tentar convencê-los de sua inocência.",opcao1,opcao2);
-            var button = document.getElementById("bt2"+numero);
+            var button = document.getElementById("bt2");
             var radios = document.getElementsByName("escolha");
             button.onclick = function() {
                 for( i = 0;i< radios.length;i++){
@@ -328,11 +191,10 @@
             }
         }
         function umdoisumum() {
-            numero=7;
             var opcao1 = "Estados Unidos";
             var opcao2 = "União Soviética";
             blocoOpcoes("Você intervém e parece apaziguar a situação, mas agora esta expulso da inteligência brasileira e terá que ir pra um dos dois países,Qual você quer ir?",opcao1,opcao2);
-            var button = document.getElementById("bt2"+numero);
+            var button = document.getElementById("bt2");
             var radios = document.getElementsByName("escolha");
             button.onclick = function() {
                 for( i = 0;i< radios.length;i++){
@@ -350,39 +212,32 @@
             }
         }
         function umdoisumdois(){
-            numero = 6
             blocoMensagem("Você não intervém e as nações declaram guerra entre si, causando o fim do mundo.");
-            conquista = "Nada acontece, feijoada;";
-            verificarConquista(conquista);
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            conquista = "Nada acontece, feijoada";
+            
+            var button = document.getElementById("bt");
+            button.onclick = function() {um(),deletarBloco()};
         }
         function umdoisdoisum(){
-            numero = 7
             blocoMensagem("Você mostra seu lado para os agentes, que não acham convincente o suficiente e acabam te matando");
-            conquista = "O inimigo do meu inimigo é meu amigo;";
-            verificarConquista(conquista);
-            var button = document.getElementById("bt"+numero);
+            var button = document.getElementById("bt");
             button.onclick = function() {umdoisdoisum0(),deletarBloco()};
         }
         function umdoisdoisum0(){
-            numero = 8;
             blocoMensagem("Com você morto, as nações declaram guerra entre si, causando o fim do mundo.");
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {um(),deletarBloco()};
         }
         function umdoisdoisdois(){
-            numero = 9
             blocoMensagem("Você despista os agentes com sucesso e começa elaborar um plano final");
-            var button = document.getElementById("bt"+numero);
+            var button = document.getElementById("bt");
             button.onclick = function() {umdoisdoisdois0(),deletarBloco()};
         }
         function umdoisdoisdois0(){
-            numero = 10;
             var opcao1 = "Tratado  Falso";
             var opcao2 = "Roubar as Armas";
             blocoOpcoes("Você chega a duas opções, enviar tratados de paz falsos para as duas nações se passando por elas ou tomar posse de todas as armas dos dois lados pra si, qual vc escolhe ?",opcao1,opcao2);
-            var button = document.getElementById("bt2"+numero);
+            var button = document.getElementById("bt2");
             var radios = document.getElementsByName("escolha");
             button.onclick = function() {
                 for( i = 0;i< radios.length;i++){
@@ -400,33 +255,25 @@
             } 
         }
         function umdois221(){
-            numero = 10
             blocoMensagem("O tratado falso convence as nações parar com a guerra e o mundo finalmente pode ter um resquício de paz.");
-            conquista ="Paz Mundial!";
-            verificarConquista(conquista);
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {um(),deletarBloco()};
         }
         function umdois222(){
-            numero = 11
             blocoMensagem("Sem armas as nações não tem como lutar, porém todo esse poder bélico subiu a cabeça e você acaba destruindo o mundo por conta própria.");
-            conquista = "Fim do aquecimento global;";
-            verificarConquista(conquista);
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {um(),deletarBloco()};
         }
         function umdois111(){
-            numero = 12
             blocoMensagem("Nos Estados Unidos você trabalha em conjunto com a CIA para tentar descobrir os planos da União Soviética, mas os dados do servidor começam a desaparecer!");
-            var button = document.getElementById("bt"+numero);
+            var button = document.getElementById("bt");
             button.onclick = function() {umdois1110(),deletarBloco()};
         }
         function umdois1110(){
-            numero = 13
             var opcao1 = "Backup";
             var opcao2 = "Achar quem esta deletando os dados";
             blocoOpcoes("Você tem duas opções, tentar fazer um backup ou procurar quem está deletando os dados, o que vc faz?? SEJA RAPIDO",opcao1,opcao2);
-            var button = document.getElementById("bt2"+numero);
+            var button = document.getElementById("bt2");
             var radios = document.getElementsByName("escolha");
             button.onclick = function() {
                 for( i = 0;i< radios.length;i++){
@@ -444,47 +291,35 @@
             }
         }
         function umdois1111(){
-            numero = 13
             blocoMensagem("Você não consegue recuperar os dados a tempo e eles são deletados, não há tempo de recuperar tudo o que foi perdido.");
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {umdois11110(),deletarBloco(),hinoURSS()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {umdois11110(),deletarBloco()};
         }
         function umdois11110(){
-            numero = 14;
             blocoMensagem("Com a CIA desamparada, os EUA ficam vulneráveis e a União Soviética consegue atacar os Estados Unidos com bombas nucleares, extinguindo o EUA do globo e encerrando a guerra fria!");
-            conquista = "VIVA A MÃE RUSSIA;";
-            verificarConquista(conquista);
-            document.body.style.backgroundImage = "url('CyberRussiabackground.jpg')";
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {um(),deletarBloco()};
         }
         function umdois1112(){
-            numero = 15;
             blocoMensagem("Você descobre que os dados estavam sendo deletados por um espião dentro do prédio, depois de dar uma cabeçada no safado você impede a perda dos dados, parabens!");
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {umdois11120(),deletarBloco(),hinoEua()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {umdois11120(),deletarBloco()};
         }
         function umdois11120(){
-            numero = 16;
             blocoMensagem("Com a CIA à todo vapor, os americanos conseguem desativar as defesas soviéticas e atacar à russia com bombas nucleares, os Estados Unidos vencem a guerra fria! ");
-            conquista = "Cranio de aço;";
-            verificarConquista(conquista);
-            document.body.style.backgroundImage = "url('CyberUnidosbackground.jpg')";
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {um(),deletarBloco()};
         }
         function umdois112(){
-            numero = 17
             blocoMensagem("Na União Soviética, você não entende bulhufas de russo mas o google tradutor é amigo, você trabalha em conjunto com a KGB para tentar descobrir os planos dos EUA, mas vocês começam a sofrer um ataque hacker!");
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {umdois1120(),deletarBloco()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {umdois1110(),deletarBloco()};
         }
         function umdois1120(){
-            numero = 18;
             var opcao1 = "Atacar";
             var opcao2 = "Defender";
             blocoOpcoes("Você tem duas opções: Devolver na mesma moeda e atacar os americanos ou impedir o ataque , o que vc faz?? SEJA RAPIDO",opcao1,opcao2);
-            var button = document.getElementById("bt2"+numero);
+            var button = document.getElementById("bt2");
             var radios = document.getElementsByName("escolha");
             button.onclick = function() {
                 for( i = 0;i< radios.length;i++){
@@ -502,46 +337,41 @@
             }
         }
         function umdois1121(){
-            numero = 18
             blocoMensagem("Você consegue destruir o sistema inimigo antes dele destruir o seu!");
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {umdois11210(),deletarBloco(),hinoURSS()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {umdois11210(),deletarBloco()};
         }
         function umdois11210(){
-            numero = 19;
             blocoMensagem("Com a CIA fragilizada, a rússia mobiliza tropas e cercam os estados unidos a se render, Vitória Soviética!");
-            conquista = "A MELHOR DEFESA É O ATAQUE;";
-            verificarConquista(conquista);
-            document.body.style.backgroundImage = "url('CyberRussiabackground.jpg')";
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {um(),deletarBloco()};
         }
         function umdois1122(){
-            numero=20;
             blocoMensagem("Você tenta impedir o ataque mas falha, o inimigo destruiu toda as suas informações...");
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {umdois11220(),deletarBloco(),hinoEua()};
+            var button = document.getElementById("bt");
+            button.onclick = function() {umdois11220(),deletarBloco()};
         }
         function umdois11220(){
-            numero=21;
             blocoMensagem("Com a KGB fragilizada, os EUA imobilizam um exército e forçam a União Soviética a se render, Vitória Americana!");
-            document.body.style.backgroundImage = "url('CyberUnidosbackground.jpg')"
-            var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            var button = document.getElementById("bt");;
+            button.onclick = function() {um(),deletarBloco()};
         }
         function inicioDeJogo(){
-            numero = 01
             blocoMensagem("Bem Vindo ao jogo CyberDev!, Você é um brasileiro que mora em Sampa City e vivenciará uma realidade alternativa que se passa no ano de 2076, nessa realidade o mundo ainda continua divido pela guerra fria, a tensão de uma guerra com potencial para um apocalipse é enorme, a questão é: O quanto você esta disposto a lutar pela paz mundial?");
-            var button = document.getElementById("bt"+numero);
+            var button = document.getElementById("bt");
             button.onclick = function() {um() , deletarBloco()}; 
         }
-        
-      </script>    
- 
-
+        inicioDeJogo();
         
         
         
+        
+        
+        
+        
+        
+        
+    </script>
     
 </body>
 </html>
