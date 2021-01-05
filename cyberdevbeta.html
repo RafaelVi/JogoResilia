@@ -79,9 +79,6 @@
                     }
                 }
                 if(escolha == opcao1){
-                    desableAutoplayEua();
-                    desableAutoplayUrss();
-                    enableAutoplay();
                     um();
                 }
                 if(escolha == opcao2){
@@ -132,8 +129,11 @@
             b.setAttribute("id","bt" + numero);
             b.textContent = "Continuar";
             
-            msg.setAttribute("id","msg");
+
+            msg.setAttribute("id","msg" + numero);
             msg.textContent = mensagem;
+            msg.classList.add("flexItem");
+           // b.classList.add("flexItem");
             mostrar(div,msg);
             mostrar(div,b);
             var main = document.getElementById("main");
@@ -158,7 +158,7 @@
            
 
 
-            msg.setAttribute("id","msg");
+            msg.setAttribute("id","msg2" + numero);
             msg.textContent = mensagem;
             mostrar(div,msg);
             
@@ -189,7 +189,7 @@
             label1.classList.add("flexItem");
             label2.classList.add("flexItem");
             msg.classList.add("flexItem");
-            b.classList.add("flexItem");
+         //   b.classList.add("flexItem");
             div2.classList.add("flexItem");
 
            mostrar(div2,label1);
@@ -402,6 +402,20 @@
         function umdois221(){
             numero = 10
             blocoMensagem("O tratado falso convence as nações parar com a guerra e o mundo finalmente pode ter um resquício de paz.");
+            var button = document.getElementById("bt"+numero);
+            button.onclick = function() {umdois2210(),deletarBloco()};
+        }
+        function umdois2210(){
+            numero = 100
+            blocoMensagem("Por enquanto...");
+            var button = document.getElementById("bt"+numero);
+            button.onclick = function() {umdois22100(),deletarBloco()};
+        }
+        function umdois22100(){
+            numero = 1000
+            blocoMensagem("Você conseguiu! evitou uma guerra nuclear e salvou o mundo, Parabéns!");
+            document.getElementById("msg"+numero).style.color = "white";
+            document.body.style.backgroundImage = "url('CyberDevb2.jpg')";
             conquista ="Paz Mundial!";
             verificarConquista(conquista);
             var button = document.getElementById("bt"+numero);
@@ -410,7 +424,9 @@
         function umdois222(){
             numero = 11
             blocoMensagem("Sem armas as nações não tem como lutar, porém todo esse poder bélico subiu a cabeça e você acaba destruindo o mundo por conta própria.");
-            conquista = "Fim do aquecimento global;";
+            document.getElementById("msg"+numero).style.color = "red";
+            document.body.style.backgroundImage = "url('CyberDevb3.jpg')";
+            conquista = "Fim da corrupção;";
             verificarConquista(conquista);
             var button = document.getElementById("bt"+numero);
             button.onclick = function() {creditos(),deletarBloco()};
@@ -452,11 +468,12 @@
         function umdois11110(){
             numero = 14;
             blocoMensagem("Com a CIA desamparada, os EUA ficam vulneráveis e a União Soviética consegue atacar os Estados Unidos com bombas nucleares, extinguindo o EUA do globo e encerrando a guerra fria!");
+            document.getElementById("msg"+numero).style.color = "red";
             conquista = "VIVA A MÃE RUSSIA;";
             verificarConquista(conquista);
             document.body.style.backgroundImage = "url('CyberRussiabackground.jpg')";
             var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            button.onclick = function() {creditos(),deletarBloco(),desableAutoplayUrss(),enableAutoplay()}
         }
         function umdois1112(){
             numero = 15;
@@ -467,11 +484,12 @@
         function umdois11120(){
             numero = 16;
             blocoMensagem("Com a CIA à todo vapor, os americanos conseguem desativar as defesas soviéticas e atacar à russia com bombas nucleares, os Estados Unidos vencem a guerra fria! ");
+            document.getElementById("msg"+numero).style.color = "rgb(0, 102, 255)";
             conquista = "Cranio de aço;";
             verificarConquista(conquista);
-            document.body.style.backgroundImage = "url('CyberUnidosbackground.jpg')";
+            document.body.style.backgroundImage = "url('CyberUnidosbackground2.jpg')";
             var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            button.onclick = function() {creditos(),deletarBloco(),desableAutoplayEua(),enableAutoplay()};
         }
         function umdois112(){
             numero = 17
@@ -510,11 +528,12 @@
         function umdois11210(){
             numero = 19;
             blocoMensagem("Com a CIA fragilizada, a rússia mobiliza tropas e cercam os estados unidos a se render, Vitória Soviética!");
+            document.getElementById("msg"+numero).style.color = "red";
             conquista = "A MELHOR DEFESA É O ATAQUE;";
             verificarConquista(conquista);
             document.body.style.backgroundImage = "url('CyberRussiabackground.jpg')";
             var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            button.onclick = function() {creditos(),deletarBloco(),desableAutoplayUrss(),enableAutoplay()};
         }
         function umdois1122(){
             numero=20;
@@ -525,9 +544,10 @@
         function umdois11220(){
             numero=21;
             blocoMensagem("Com a KGB fragilizada, os EUA imobilizam um exército e forçam a União Soviética a se render, Vitória Americana!");
-            document.body.style.backgroundImage = "url('CyberUnidosbackground.jpg')"
+            document.getElementById("msg"+numero).style.color = "rgb(0, 102, 255)";
+            document.body.style.backgroundImage = "url('CyberUnidosbackground2.jpg')"
             var button = document.getElementById("bt"+numero);
-            button.onclick = function() {creditos(),deletarBloco()};
+            button.onclick = function() {creditos(),deletarBloco(),desableAutoplayEua(),enableAutoplay()};
         }
         function inicioDeJogo(){
             numero = 01
